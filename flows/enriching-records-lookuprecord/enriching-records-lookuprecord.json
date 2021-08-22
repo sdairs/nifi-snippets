@@ -1,1 +1,945 @@
-{"flowContents":{"identifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"enriching-records-lookuprecord","comments":"","position":{"x":584.0,"y":88.0},"processGroups":[],"remoteProcessGroups":[],"processors":[{"identifier":"ddedb985-4fa9-302a-a13c-50cc1961f05c","name":"Merge Test Data","comments":"","position":{"x":648.0,"y":-56.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.MergeContent","properties":{"Keep Path":"false","Maximum Group Size":null,"Merge Strategy":"Bin-Packing Algorithm","Attribute Strategy":"Keep Only Common Attributes","Compression Level":"1","Maximum Number of Entries":"1000","Minimum Group Size":"0 B","Maximum number of Bins":"5","Tar Modified Time":"${file.lastModifiedTime}","Delimiter Strategy":"Do Not Use Delimiters","Merge Format":"Binary Concatenation","Footer File":null,"Max Bin Age":"2 seconds","Demarcator File":null,"Correlation Attribute Name":null,"Header File":null,"mergecontent-metadata-strategy":"Do Not Merge Uncommon Metadata","Minimum Number of Entries":"200"},"propertyDescriptors":{"Keep Path":{"name":"Keep Path","displayName":"Keep Path","identifiesControllerService":false,"sensitive":false},"Maximum Group Size":{"name":"Maximum Group Size","displayName":"Maximum Group Size","identifiesControllerService":false,"sensitive":false},"Merge Strategy":{"name":"Merge Strategy","displayName":"Merge Strategy","identifiesControllerService":false,"sensitive":false},"Attribute Strategy":{"name":"Attribute Strategy","displayName":"Attribute Strategy","identifiesControllerService":false,"sensitive":false},"Compression Level":{"name":"Compression Level","displayName":"Compression Level","identifiesControllerService":false,"sensitive":false},"Maximum Number of Entries":{"name":"Maximum Number of Entries","displayName":"Maximum Number of Entries","identifiesControllerService":false,"sensitive":false},"Minimum Group Size":{"name":"Minimum Group Size","displayName":"Minimum Group Size","identifiesControllerService":false,"sensitive":false},"Maximum number of Bins":{"name":"Maximum number of Bins","displayName":"Maximum number of Bins","identifiesControllerService":false,"sensitive":false},"Tar Modified Time":{"name":"Tar Modified Time","displayName":"Tar Modified Time","identifiesControllerService":false,"sensitive":false},"Delimiter Strategy":{"name":"Delimiter Strategy","displayName":"Delimiter Strategy","identifiesControllerService":false,"sensitive":false},"Merge Format":{"name":"Merge Format","displayName":"Merge Format","identifiesControllerService":false,"sensitive":false},"Footer File":{"name":"Footer File","displayName":"Footer","identifiesControllerService":false,"sensitive":false,"resourceDefinition":{"cardinality":"SINGLE","resourceTypes":["TEXT","FILE"]}},"Max Bin Age":{"name":"Max Bin Age","displayName":"Max Bin Age","identifiesControllerService":false,"sensitive":false},"Demarcator File":{"name":"Demarcator File","displayName":"Demarcator","identifiesControllerService":false,"sensitive":false,"resourceDefinition":{"cardinality":"SINGLE","resourceTypes":["TEXT","FILE"]}},"Correlation Attribute Name":{"name":"Correlation Attribute Name","displayName":"Correlation Attribute Name","identifiesControllerService":false,"sensitive":false},"Header File":{"name":"Header File","displayName":"Header","identifiesControllerService":false,"sensitive":false,"resourceDefinition":{"cardinality":"SINGLE","resourceTypes":["TEXT","FILE"]}},"mergecontent-metadata-strategy":{"name":"mergecontent-metadata-strategy","displayName":"Metadata Strategy","identifiesControllerService":false,"sensitive":false},"Minimum Number of Entries":{"name":"Minimum Number of Entries","displayName":"Minimum Number of Entries","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":["original","failure"],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"d7fd2087-6157-35d2-9e81-be87d12fb5e9","name":"Generate Test Data","comments":"","position":{"x":648.0,"y":-264.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.GenerateFlowFile","properties":{"character-set":"UTF-8","File Size":"0B","mime-type":null,"generate-ff-custom-text":"{ \n   \"someInt\": \"${random()}\",\n   \"someUUID\": \"${UUID()}\",\n   \"query\": \"${random():mod(2):equals(0):ifElse('val1','val2')}\"\n}","Batch Size":"1","Unique FlowFiles":"false","Data Format":"Text"},"propertyDescriptors":{"character-set":{"name":"character-set","displayName":"Character Set","identifiesControllerService":false,"sensitive":false},"File Size":{"name":"File Size","displayName":"File Size","identifiesControllerService":false,"sensitive":false},"mime-type":{"name":"mime-type","displayName":"Mime Type","identifiesControllerService":false,"sensitive":false},"generate-ff-custom-text":{"name":"generate-ff-custom-text","displayName":"Custom Text","identifiesControllerService":false,"sensitive":false},"Batch Size":{"name":"Batch Size","displayName":"Batch Size","identifiesControllerService":false,"sensitive":false},"Unique FlowFiles":{"name":"Unique FlowFiles","displayName":"Unique FlowFiles","identifiesControllerService":false,"sensitive":false},"Data Format":{"name":"Data Format","displayName":"Data Format","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"2 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":[],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"2b47f4fd-bb79-37ee-8990-cb281beff6c8","name":"Enrich Records","comments":"","position":{"x":648.0,"y":144.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.LookupRecord","properties":{"result-contents":"insert-entire-record","myQuery":"/query","routing-strategy":"route-to-success","result-record-path":"/enrich","record-writer":"842a9253-3e64-335e-9110-f2ead1fb0908","record-reader":"9a0a6320-eb3f-3f8f-a802-32cd85351bf7","lookup-service":"ddd168b4-ef74-3f9e-82b9-fe8e24a171f3","record-update-strategy":"use-property"},"propertyDescriptors":{"result-contents":{"name":"result-contents","displayName":"Record Result Contents","identifiesControllerService":false,"sensitive":false},"myQuery":{"name":"myQuery","displayName":"myQuery","identifiesControllerService":false,"sensitive":false},"routing-strategy":{"name":"routing-strategy","displayName":"Routing Strategy","identifiesControllerService":false,"sensitive":false},"result-record-path":{"name":"result-record-path","displayName":"Result RecordPath","identifiesControllerService":false,"sensitive":false},"record-writer":{"name":"record-writer","displayName":"Record Writer","identifiesControllerService":true,"sensitive":false},"record-reader":{"name":"record-reader","displayName":"Record Reader","identifiesControllerService":true,"sensitive":false},"lookup-service":{"name":"lookup-service","displayName":"Lookup Service","identifiesControllerService":true,"sensitive":false},"record-update-strategy":{"name":"record-update-strategy","displayName":"Record Update Strategy","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":[],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"}],"inputPorts":[],"outputPorts":[],"connections":[{"identifier":"22142922-22ba-3a61-979c-fe9b243c2f27","name":"","source":{"id":"d7fd2087-6157-35d2-9e81-be87d12fb5e9","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Generate Test Data","comments":""},"destination":{"id":"ddedb985-4fa9-302a-a13c-50cc1961f05c","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Merge Test Data","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["success"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"53b3a3ca-0913-3c40-87cc-ad0271be8607","name":"","source":{"id":"2b47f4fd-bb79-37ee-8990-cb281beff6c8","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Enrich Records","comments":""},"destination":{"id":"3c7826f0-75f7-3f23-8903-00aa53b39681","type":"FUNNEL","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Funnel","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["failure"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"a6a2e29e-7439-392c-86fb-f5a0b3b82806","name":"","source":{"id":"ddedb985-4fa9-302a-a13c-50cc1961f05c","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Merge Test Data","comments":""},"destination":{"id":"2b47f4fd-bb79-37ee-8990-cb281beff6c8","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Enrich Records","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["merged"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"d465fd6f-28de-34fd-a247-d3f3a07f5e58","name":"","source":{"id":"2b47f4fd-bb79-37ee-8990-cb281beff6c8","type":"PROCESSOR","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Enrich Records","comments":""},"destination":{"id":"351c225c-d681-32b7-b6fc-9e3623c94af5","type":"FUNNEL","groupId":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902","name":"Funnel","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["success"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"}],"labels":[],"funnels":[{"identifier":"351c225c-d681-32b7-b6fc-9e3623c94af5","position":{"x":952.0,"y":352.0},"componentType":"FUNNEL","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"3c7826f0-75f7-3f23-8903-00aa53b39681","position":{"x":568.0,"y":352.0},"componentType":"FUNNEL","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"}],"controllerServices":[{"identifier":"f3074355-6ba6-3ab5-946f-28334f46b8f7","name":"REST API Result Reader","comments":"","type":"org.apache.nifi.json.JsonTreeReader","bundle":{"group":"org.apache.nifi","artifact":"nifi-record-serialization-services-nar","version":"1.14.0"},"controllerServiceApis":[{"type":"org.apache.nifi.serialization.RecordReaderFactory","bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-services-api-nar","version":"1.14.0"}}],"properties":{"Timestamp Format":null,"schema-inference-cache":null,"Date Format":null,"schema-branch":null,"schema-name":"${schema.name}","schema-registry":null,"Time Format":null,"schema-access-strategy":"infer-schema","schema-version":null,"schema-text":"${avro.schema}"},"propertyDescriptors":{"Timestamp Format":{"name":"Timestamp Format","displayName":"Timestamp Format","identifiesControllerService":false,"sensitive":false},"schema-inference-cache":{"name":"schema-inference-cache","displayName":"Schema Inference Cache","identifiesControllerService":true,"sensitive":false},"Date Format":{"name":"Date Format","displayName":"Date Format","identifiesControllerService":false,"sensitive":false},"schema-branch":{"name":"schema-branch","displayName":"Schema Branch","identifiesControllerService":false,"sensitive":false},"schema-name":{"name":"schema-name","displayName":"Schema Name","identifiesControllerService":false,"sensitive":false},"schema-registry":{"name":"schema-registry","displayName":"Schema Registry","identifiesControllerService":true,"sensitive":false},"Time Format":{"name":"Time Format","displayName":"Time Format","identifiesControllerService":false,"sensitive":false},"schema-access-strategy":{"name":"schema-access-strategy","displayName":"Schema Access Strategy","identifiesControllerService":false,"sensitive":false},"schema-version":{"name":"schema-version","displayName":"Schema Version","identifiesControllerService":false,"sensitive":false},"schema-text":{"name":"schema-text","displayName":"Schema Text","identifiesControllerService":false,"sensitive":false}},"componentType":"CONTROLLER_SERVICE","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"ddd168b4-ef74-3f9e-82b9-fe8e24a171f3","name":"Dummy REST API Lookup Service","comments":"","type":"org.apache.nifi.lookup.RestLookupService","bundle":{"group":"org.apache.nifi","artifact":"nifi-lookup-services-nar","version":"1.14.0"},"controllerServiceApis":[{"type":"org.apache.nifi.lookup.RecordLookupService","bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-services-api-nar","version":"1.14.0"}},{"type":"org.apache.nifi.lookup.LookupService","bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-services-api-nar","version":"1.14.0"}}],"properties":{"rest-lookup-record-reader":"f3074355-6ba6-3ab5-946f-28334f46b8f7","rest-lookup-basic-auth-username":null,"rest-lookup-digest-auth":"false","rest-lookup-connection-timeout":"5 secs","rest-lookup-url":"http://172.17.0.2/api?param1=${myQuery}","rest-lookup-ssl-context-service":null,"proxy-configuration-service":null,"request.method":"get","mime.type":"application/json","rest-lookup-record-path":null,"rest-lookup-read-timeout":"15 secs"},"propertyDescriptors":{"rest-lookup-record-reader":{"name":"rest-lookup-record-reader","displayName":"Record Reader","identifiesControllerService":true,"sensitive":false},"rest-lookup-basic-auth-username":{"name":"rest-lookup-basic-auth-username","displayName":"Basic Authentication Username","identifiesControllerService":false,"sensitive":false},"rest-lookup-digest-auth":{"name":"rest-lookup-digest-auth","displayName":"Use Digest Authentication","identifiesControllerService":false,"sensitive":false},"rest-lookup-connection-timeout":{"name":"rest-lookup-connection-timeout","displayName":"Connection Timeout","identifiesControllerService":false,"sensitive":false},"rest-lookup-url":{"name":"rest-lookup-url","displayName":"URL","identifiesControllerService":false,"sensitive":false},"rest-lookup-ssl-context-service":{"name":"rest-lookup-ssl-context-service","displayName":"SSL Context Service","identifiesControllerService":true,"sensitive":false},"proxy-configuration-service":{"name":"proxy-configuration-service","displayName":"Proxy Configuration Service","identifiesControllerService":true,"sensitive":false},"rest-lookup-basic-auth-password":{"name":"rest-lookup-basic-auth-password","displayName":"Basic Authentication Password","identifiesControllerService":false,"sensitive":true},"request.method":{"name":"request.method","displayName":"request.method","identifiesControllerService":false,"sensitive":false},"mime.type":{"name":"mime.type","displayName":"mime.type","identifiesControllerService":false,"sensitive":false},"rest-lookup-record-path":{"name":"rest-lookup-record-path","displayName":"Record Path","identifiesControllerService":false,"sensitive":false},"rest-lookup-read-timeout":{"name":"rest-lookup-read-timeout","displayName":"Read Timeout","identifiesControllerService":false,"sensitive":false}},"componentType":"CONTROLLER_SERVICE","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"9a0a6320-eb3f-3f8f-a802-32cd85351bf7","name":"Dummy Data Reader","type":"org.apache.nifi.json.JsonTreeReader","bundle":{"group":"org.apache.nifi","artifact":"nifi-record-serialization-services-nar","version":"1.14.0"},"controllerServiceApis":[{"type":"org.apache.nifi.serialization.RecordReaderFactory","bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-services-api-nar","version":"1.14.0"}}],"properties":{"Timestamp Format":null,"schema-inference-cache":null,"Date Format":null,"schema-branch":null,"schema-name":"${schema.name}","schema-registry":null,"Time Format":null,"schema-access-strategy":"infer-schema","schema-version":null,"schema-text":"${avro.schema}"},"propertyDescriptors":{"Timestamp Format":{"name":"Timestamp Format","displayName":"Timestamp Format","identifiesControllerService":false,"sensitive":false},"schema-inference-cache":{"name":"schema-inference-cache","displayName":"Schema Inference Cache","identifiesControllerService":true,"sensitive":false},"Date Format":{"name":"Date Format","displayName":"Date Format","identifiesControllerService":false,"sensitive":false},"schema-branch":{"name":"schema-branch","displayName":"Schema Branch","identifiesControllerService":false,"sensitive":false},"schema-name":{"name":"schema-name","displayName":"Schema Name","identifiesControllerService":false,"sensitive":false},"schema-registry":{"name":"schema-registry","displayName":"Schema Registry","identifiesControllerService":true,"sensitive":false},"Time Format":{"name":"Time Format","displayName":"Time Format","identifiesControllerService":false,"sensitive":false},"schema-access-strategy":{"name":"schema-access-strategy","displayName":"Schema Access Strategy","identifiesControllerService":false,"sensitive":false},"schema-version":{"name":"schema-version","displayName":"Schema Version","identifiesControllerService":false,"sensitive":false},"schema-text":{"name":"schema-text","displayName":"Schema Text","identifiesControllerService":false,"sensitive":false}},"componentType":"CONTROLLER_SERVICE","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"},{"identifier":"842a9253-3e64-335e-9110-f2ead1fb0908","name":"Dummy Data Writer","type":"org.apache.nifi.json.JsonRecordSetWriter","bundle":{"group":"org.apache.nifi","artifact":"nifi-record-serialization-services-nar","version":"1.14.0"},"controllerServiceApis":[{"type":"org.apache.nifi.serialization.RecordSetWriterFactory","bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-services-api-nar","version":"1.14.0"}}],"properties":{"schema-branch":null,"compression-level":"1","schema-cache":null,"Timestamp Format":null,"Date Format":null,"Pretty Print JSON":"false","compression-format":"none","Schema Write Strategy":"no-schema","suppress-nulls":"never-suppress","output-grouping":"output-array","schema-name":"${schema.name}","schema-registry":null,"Time Format":null,"schema-access-strategy":"inherit-record-schema","schema-protocol-version":"1","schema-version":null,"schema-text":"${avro.schema}"},"propertyDescriptors":{"schema-branch":{"name":"schema-branch","displayName":"Schema Branch","identifiesControllerService":false,"sensitive":false},"compression-level":{"name":"compression-level","displayName":"Compression Level","identifiesControllerService":false,"sensitive":false},"schema-cache":{"name":"schema-cache","displayName":"Schema Cache","identifiesControllerService":true,"sensitive":false},"Timestamp Format":{"name":"Timestamp Format","displayName":"Timestamp Format","identifiesControllerService":false,"sensitive":false},"Date Format":{"name":"Date Format","displayName":"Date Format","identifiesControllerService":false,"sensitive":false},"Pretty Print JSON":{"name":"Pretty Print JSON","displayName":"Pretty Print JSON","identifiesControllerService":false,"sensitive":false},"compression-format":{"name":"compression-format","displayName":"Compression Format","identifiesControllerService":false,"sensitive":false},"Schema Write Strategy":{"name":"Schema Write Strategy","displayName":"Schema Write Strategy","identifiesControllerService":false,"sensitive":false},"suppress-nulls":{"name":"suppress-nulls","displayName":"Suppress Null Values","identifiesControllerService":false,"sensitive":false},"output-grouping":{"name":"output-grouping","displayName":"Output Grouping","identifiesControllerService":false,"sensitive":false},"schema-name":{"name":"schema-name","displayName":"Schema Name","identifiesControllerService":false,"sensitive":false},"schema-registry":{"name":"schema-registry","displayName":"Schema Registry","identifiesControllerService":true,"sensitive":false},"Time Format":{"name":"Time Format","displayName":"Time Format","identifiesControllerService":false,"sensitive":false},"schema-access-strategy":{"name":"schema-access-strategy","displayName":"Schema Access Strategy","identifiesControllerService":false,"sensitive":false},"schema-protocol-version":{"name":"schema-protocol-version","displayName":"Schema Protocol Version","identifiesControllerService":false,"sensitive":false},"schema-version":{"name":"schema-version","displayName":"Schema Version","identifiesControllerService":false,"sensitive":false},"schema-text":{"name":"schema-text","displayName":"Schema Text","identifiesControllerService":false,"sensitive":false}},"componentType":"CONTROLLER_SERVICE","groupIdentifier":"7268a0b4-ddac-3bff-8024-4d6dcc8bb902"}],"variables":{},"defaultFlowFileExpiration":"0 sec","defaultBackPressureObjectThreshold":10000,"defaultBackPressureDataSizeThreshold":"1 GB","flowFileConcurrency":"UNBOUNDED","flowFileOutboundPolicy":"STREAM_WHEN_AVAILABLE","componentType":"PROCESS_GROUP"},"externalControllerServices":{},"parameterContexts":{},"flowEncodingVersion":"1.0"}
+{
+	"flowContents": {
+		"identifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+		"name": "enriching-records-lookuprecord",
+		"comments": "",
+		"position": {
+			"x": 584.0,
+			"y": 88.0
+		},
+		"processGroups": [],
+		"remoteProcessGroups": [],
+		"processors": [{
+			"identifier": "ddedb985-4fa9-302a-a13c-50cc1961f05c",
+			"name": "Merge Test Data",
+			"comments": "",
+			"position": {
+				"x": 648.0,
+				"y": -56.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.MergeContent",
+			"properties": {
+				"Keep Path": "false",
+				"Maximum Group Size": null,
+				"Merge Strategy": "Bin-Packing Algorithm",
+				"Attribute Strategy": "Keep Only Common Attributes",
+				"Compression Level": "1",
+				"Maximum Number of Entries": "1000",
+				"Minimum Group Size": "0 B",
+				"Maximum number of Bins": "5",
+				"Tar Modified Time": "${file.lastModifiedTime}",
+				"Delimiter Strategy": "Do Not Use Delimiters",
+				"Merge Format": "Binary Concatenation",
+				"Footer File": null,
+				"Max Bin Age": "2 seconds",
+				"Demarcator File": null,
+				"Correlation Attribute Name": null,
+				"Header File": null,
+				"mergecontent-metadata-strategy": "Do Not Merge Uncommon Metadata",
+				"Minimum Number of Entries": "200"
+			},
+			"propertyDescriptors": {
+				"Keep Path": {
+					"name": "Keep Path",
+					"displayName": "Keep Path",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Maximum Group Size": {
+					"name": "Maximum Group Size",
+					"displayName": "Maximum Group Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Merge Strategy": {
+					"name": "Merge Strategy",
+					"displayName": "Merge Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Attribute Strategy": {
+					"name": "Attribute Strategy",
+					"displayName": "Attribute Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Compression Level": {
+					"name": "Compression Level",
+					"displayName": "Compression Level",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Maximum Number of Entries": {
+					"name": "Maximum Number of Entries",
+					"displayName": "Maximum Number of Entries",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Minimum Group Size": {
+					"name": "Minimum Group Size",
+					"displayName": "Minimum Group Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Maximum number of Bins": {
+					"name": "Maximum number of Bins",
+					"displayName": "Maximum number of Bins",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Tar Modified Time": {
+					"name": "Tar Modified Time",
+					"displayName": "Tar Modified Time",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Delimiter Strategy": {
+					"name": "Delimiter Strategy",
+					"displayName": "Delimiter Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Merge Format": {
+					"name": "Merge Format",
+					"displayName": "Merge Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Footer File": {
+					"name": "Footer File",
+					"displayName": "Footer",
+					"identifiesControllerService": false,
+					"sensitive": false,
+					"resourceDefinition": {
+						"cardinality": "SINGLE",
+						"resourceTypes": ["TEXT", "FILE"]
+					}
+				},
+				"Max Bin Age": {
+					"name": "Max Bin Age",
+					"displayName": "Max Bin Age",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Demarcator File": {
+					"name": "Demarcator File",
+					"displayName": "Demarcator",
+					"identifiesControllerService": false,
+					"sensitive": false,
+					"resourceDefinition": {
+						"cardinality": "SINGLE",
+						"resourceTypes": ["TEXT", "FILE"]
+					}
+				},
+				"Correlation Attribute Name": {
+					"name": "Correlation Attribute Name",
+					"displayName": "Correlation Attribute Name",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Header File": {
+					"name": "Header File",
+					"displayName": "Header",
+					"identifiesControllerService": false,
+					"sensitive": false,
+					"resourceDefinition": {
+						"cardinality": "SINGLE",
+						"resourceTypes": ["TEXT", "FILE"]
+					}
+				},
+				"mergecontent-metadata-strategy": {
+					"name": "mergecontent-metadata-strategy",
+					"displayName": "Metadata Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Minimum Number of Entries": {
+					"name": "Minimum Number of Entries",
+					"displayName": "Minimum Number of Entries",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": ["original", "failure"],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "d7fd2087-6157-35d2-9e81-be87d12fb5e9",
+			"name": "Generate Test Data",
+			"comments": "",
+			"position": {
+				"x": 648.0,
+				"y": -264.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.GenerateFlowFile",
+			"properties": {
+				"character-set": "UTF-8",
+				"File Size": "0B",
+				"mime-type": null,
+				"generate-ff-custom-text": "{ \n   \"someInt\": \"${random()}\",\n   \"someUUID\": \"${UUID()}\",\n   \"query\": \"${random():mod(2):equals(0):ifElse('val1','val2')}\"\n}",
+				"Batch Size": "1",
+				"Unique FlowFiles": "false",
+				"Data Format": "Text"
+			},
+			"propertyDescriptors": {
+				"character-set": {
+					"name": "character-set",
+					"displayName": "Character Set",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"File Size": {
+					"name": "File Size",
+					"displayName": "File Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"mime-type": {
+					"name": "mime-type",
+					"displayName": "Mime Type",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"generate-ff-custom-text": {
+					"name": "generate-ff-custom-text",
+					"displayName": "Custom Text",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Batch Size": {
+					"name": "Batch Size",
+					"displayName": "Batch Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Unique FlowFiles": {
+					"name": "Unique FlowFiles",
+					"displayName": "Unique FlowFiles",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Data Format": {
+					"name": "Data Format",
+					"displayName": "Data Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "2 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": [],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "2b47f4fd-bb79-37ee-8990-cb281beff6c8",
+			"name": "Enrich Records",
+			"comments": "",
+			"position": {
+				"x": 648.0,
+				"y": 144.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.LookupRecord",
+			"properties": {
+				"result-contents": "insert-entire-record",
+				"myQuery": "/query",
+				"routing-strategy": "route-to-success",
+				"result-record-path": "/enrich",
+				"record-writer": "842a9253-3e64-335e-9110-f2ead1fb0908",
+				"record-reader": "9a0a6320-eb3f-3f8f-a802-32cd85351bf7",
+				"lookup-service": "ddd168b4-ef74-3f9e-82b9-fe8e24a171f3",
+				"record-update-strategy": "use-property"
+			},
+			"propertyDescriptors": {
+				"result-contents": {
+					"name": "result-contents",
+					"displayName": "Record Result Contents",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"myQuery": {
+					"name": "myQuery",
+					"displayName": "myQuery",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"routing-strategy": {
+					"name": "routing-strategy",
+					"displayName": "Routing Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"result-record-path": {
+					"name": "result-record-path",
+					"displayName": "Result RecordPath",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"record-writer": {
+					"name": "record-writer",
+					"displayName": "Record Writer",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"record-reader": {
+					"name": "record-reader",
+					"displayName": "Record Reader",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"lookup-service": {
+					"name": "lookup-service",
+					"displayName": "Lookup Service",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"record-update-strategy": {
+					"name": "record-update-strategy",
+					"displayName": "Record Update Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": [],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}],
+		"inputPorts": [],
+		"outputPorts": [],
+		"connections": [{
+			"identifier": "22142922-22ba-3a61-979c-fe9b243c2f27",
+			"name": "",
+			"source": {
+				"id": "d7fd2087-6157-35d2-9e81-be87d12fb5e9",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Generate Test Data",
+				"comments": ""
+			},
+			"destination": {
+				"id": "ddedb985-4fa9-302a-a13c-50cc1961f05c",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Merge Test Data",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["success"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "53b3a3ca-0913-3c40-87cc-ad0271be8607",
+			"name": "",
+			"source": {
+				"id": "2b47f4fd-bb79-37ee-8990-cb281beff6c8",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Enrich Records",
+				"comments": ""
+			},
+			"destination": {
+				"id": "3c7826f0-75f7-3f23-8903-00aa53b39681",
+				"type": "FUNNEL",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Funnel",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["failure"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "a6a2e29e-7439-392c-86fb-f5a0b3b82806",
+			"name": "",
+			"source": {
+				"id": "ddedb985-4fa9-302a-a13c-50cc1961f05c",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Merge Test Data",
+				"comments": ""
+			},
+			"destination": {
+				"id": "2b47f4fd-bb79-37ee-8990-cb281beff6c8",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Enrich Records",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["merged"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "d465fd6f-28de-34fd-a247-d3f3a07f5e58",
+			"name": "",
+			"source": {
+				"id": "2b47f4fd-bb79-37ee-8990-cb281beff6c8",
+				"type": "PROCESSOR",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Enrich Records",
+				"comments": ""
+			},
+			"destination": {
+				"id": "351c225c-d681-32b7-b6fc-9e3623c94af5",
+				"type": "FUNNEL",
+				"groupId": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902",
+				"name": "Funnel",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["success"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}],
+		"labels": [],
+		"funnels": [{
+			"identifier": "351c225c-d681-32b7-b6fc-9e3623c94af5",
+			"position": {
+				"x": 952.0,
+				"y": 352.0
+			},
+			"componentType": "FUNNEL",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "3c7826f0-75f7-3f23-8903-00aa53b39681",
+			"position": {
+				"x": 568.0,
+				"y": 352.0
+			},
+			"componentType": "FUNNEL",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}],
+		"controllerServices": [{
+			"identifier": "f3074355-6ba6-3ab5-946f-28334f46b8f7",
+			"name": "REST API Result Reader",
+			"comments": "",
+			"type": "org.apache.nifi.json.JsonTreeReader",
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-record-serialization-services-nar",
+				"version": "1.14.0"
+			},
+			"controllerServiceApis": [{
+				"type": "org.apache.nifi.serialization.RecordReaderFactory",
+				"bundle": {
+					"group": "org.apache.nifi",
+					"artifact": "nifi-standard-services-api-nar",
+					"version": "1.14.0"
+				}
+			}],
+			"properties": {
+				"Timestamp Format": null,
+				"schema-inference-cache": null,
+				"Date Format": null,
+				"schema-branch": null,
+				"schema-name": "${schema.name}",
+				"schema-registry": null,
+				"Time Format": null,
+				"schema-access-strategy": "infer-schema",
+				"schema-version": null,
+				"schema-text": "${avro.schema}"
+			},
+			"propertyDescriptors": {
+				"Timestamp Format": {
+					"name": "Timestamp Format",
+					"displayName": "Timestamp Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-inference-cache": {
+					"name": "schema-inference-cache",
+					"displayName": "Schema Inference Cache",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Date Format": {
+					"name": "Date Format",
+					"displayName": "Date Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-branch": {
+					"name": "schema-branch",
+					"displayName": "Schema Branch",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-name": {
+					"name": "schema-name",
+					"displayName": "Schema Name",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-registry": {
+					"name": "schema-registry",
+					"displayName": "Schema Registry",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Time Format": {
+					"name": "Time Format",
+					"displayName": "Time Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-access-strategy": {
+					"name": "schema-access-strategy",
+					"displayName": "Schema Access Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-version": {
+					"name": "schema-version",
+					"displayName": "Schema Version",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-text": {
+					"name": "schema-text",
+					"displayName": "Schema Text",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"componentType": "CONTROLLER_SERVICE",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "ddd168b4-ef74-3f9e-82b9-fe8e24a171f3",
+			"name": "Dummy REST API Lookup Service",
+			"comments": "",
+			"type": "org.apache.nifi.lookup.RestLookupService",
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-lookup-services-nar",
+				"version": "1.14.0"
+			},
+			"controllerServiceApis": [{
+				"type": "org.apache.nifi.lookup.RecordLookupService",
+				"bundle": {
+					"group": "org.apache.nifi",
+					"artifact": "nifi-standard-services-api-nar",
+					"version": "1.14.0"
+				}
+			}, {
+				"type": "org.apache.nifi.lookup.LookupService",
+				"bundle": {
+					"group": "org.apache.nifi",
+					"artifact": "nifi-standard-services-api-nar",
+					"version": "1.14.0"
+				}
+			}],
+			"properties": {
+				"rest-lookup-record-reader": "f3074355-6ba6-3ab5-946f-28334f46b8f7",
+				"rest-lookup-basic-auth-username": null,
+				"rest-lookup-digest-auth": "false",
+				"rest-lookup-connection-timeout": "5 secs",
+				"rest-lookup-url": "http://172.17.0.2/api?param1=${myQuery}",
+				"rest-lookup-ssl-context-service": null,
+				"proxy-configuration-service": null,
+				"request.method": "get",
+				"mime.type": "application/json",
+				"rest-lookup-record-path": null,
+				"rest-lookup-read-timeout": "15 secs"
+			},
+			"propertyDescriptors": {
+				"rest-lookup-record-reader": {
+					"name": "rest-lookup-record-reader",
+					"displayName": "Record Reader",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"rest-lookup-basic-auth-username": {
+					"name": "rest-lookup-basic-auth-username",
+					"displayName": "Basic Authentication Username",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-digest-auth": {
+					"name": "rest-lookup-digest-auth",
+					"displayName": "Use Digest Authentication",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-connection-timeout": {
+					"name": "rest-lookup-connection-timeout",
+					"displayName": "Connection Timeout",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-url": {
+					"name": "rest-lookup-url",
+					"displayName": "URL",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-ssl-context-service": {
+					"name": "rest-lookup-ssl-context-service",
+					"displayName": "SSL Context Service",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"proxy-configuration-service": {
+					"name": "proxy-configuration-service",
+					"displayName": "Proxy Configuration Service",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"rest-lookup-basic-auth-password": {
+					"name": "rest-lookup-basic-auth-password",
+					"displayName": "Basic Authentication Password",
+					"identifiesControllerService": false,
+					"sensitive": true
+				},
+				"request.method": {
+					"name": "request.method",
+					"displayName": "request.method",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"mime.type": {
+					"name": "mime.type",
+					"displayName": "mime.type",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-record-path": {
+					"name": "rest-lookup-record-path",
+					"displayName": "Record Path",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"rest-lookup-read-timeout": {
+					"name": "rest-lookup-read-timeout",
+					"displayName": "Read Timeout",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"componentType": "CONTROLLER_SERVICE",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "9a0a6320-eb3f-3f8f-a802-32cd85351bf7",
+			"name": "Dummy Data Reader",
+			"type": "org.apache.nifi.json.JsonTreeReader",
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-record-serialization-services-nar",
+				"version": "1.14.0"
+			},
+			"controllerServiceApis": [{
+				"type": "org.apache.nifi.serialization.RecordReaderFactory",
+				"bundle": {
+					"group": "org.apache.nifi",
+					"artifact": "nifi-standard-services-api-nar",
+					"version": "1.14.0"
+				}
+			}],
+			"properties": {
+				"Timestamp Format": null,
+				"schema-inference-cache": null,
+				"Date Format": null,
+				"schema-branch": null,
+				"schema-name": "${schema.name}",
+				"schema-registry": null,
+				"Time Format": null,
+				"schema-access-strategy": "infer-schema",
+				"schema-version": null,
+				"schema-text": "${avro.schema}"
+			},
+			"propertyDescriptors": {
+				"Timestamp Format": {
+					"name": "Timestamp Format",
+					"displayName": "Timestamp Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-inference-cache": {
+					"name": "schema-inference-cache",
+					"displayName": "Schema Inference Cache",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Date Format": {
+					"name": "Date Format",
+					"displayName": "Date Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-branch": {
+					"name": "schema-branch",
+					"displayName": "Schema Branch",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-name": {
+					"name": "schema-name",
+					"displayName": "Schema Name",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-registry": {
+					"name": "schema-registry",
+					"displayName": "Schema Registry",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Time Format": {
+					"name": "Time Format",
+					"displayName": "Time Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-access-strategy": {
+					"name": "schema-access-strategy",
+					"displayName": "Schema Access Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-version": {
+					"name": "schema-version",
+					"displayName": "Schema Version",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-text": {
+					"name": "schema-text",
+					"displayName": "Schema Text",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"componentType": "CONTROLLER_SERVICE",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}, {
+			"identifier": "842a9253-3e64-335e-9110-f2ead1fb0908",
+			"name": "Dummy Data Writer",
+			"type": "org.apache.nifi.json.JsonRecordSetWriter",
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-record-serialization-services-nar",
+				"version": "1.14.0"
+			},
+			"controllerServiceApis": [{
+				"type": "org.apache.nifi.serialization.RecordSetWriterFactory",
+				"bundle": {
+					"group": "org.apache.nifi",
+					"artifact": "nifi-standard-services-api-nar",
+					"version": "1.14.0"
+				}
+			}],
+			"properties": {
+				"schema-branch": null,
+				"compression-level": "1",
+				"schema-cache": null,
+				"Timestamp Format": null,
+				"Date Format": null,
+				"Pretty Print JSON": "false",
+				"compression-format": "none",
+				"Schema Write Strategy": "no-schema",
+				"suppress-nulls": "never-suppress",
+				"output-grouping": "output-array",
+				"schema-name": "${schema.name}",
+				"schema-registry": null,
+				"Time Format": null,
+				"schema-access-strategy": "inherit-record-schema",
+				"schema-protocol-version": "1",
+				"schema-version": null,
+				"schema-text": "${avro.schema}"
+			},
+			"propertyDescriptors": {
+				"schema-branch": {
+					"name": "schema-branch",
+					"displayName": "Schema Branch",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"compression-level": {
+					"name": "compression-level",
+					"displayName": "Compression Level",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-cache": {
+					"name": "schema-cache",
+					"displayName": "Schema Cache",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Timestamp Format": {
+					"name": "Timestamp Format",
+					"displayName": "Timestamp Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Date Format": {
+					"name": "Date Format",
+					"displayName": "Date Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Pretty Print JSON": {
+					"name": "Pretty Print JSON",
+					"displayName": "Pretty Print JSON",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"compression-format": {
+					"name": "compression-format",
+					"displayName": "Compression Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Schema Write Strategy": {
+					"name": "Schema Write Strategy",
+					"displayName": "Schema Write Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"suppress-nulls": {
+					"name": "suppress-nulls",
+					"displayName": "Suppress Null Values",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"output-grouping": {
+					"name": "output-grouping",
+					"displayName": "Output Grouping",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-name": {
+					"name": "schema-name",
+					"displayName": "Schema Name",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-registry": {
+					"name": "schema-registry",
+					"displayName": "Schema Registry",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Time Format": {
+					"name": "Time Format",
+					"displayName": "Time Format",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-access-strategy": {
+					"name": "schema-access-strategy",
+					"displayName": "Schema Access Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-protocol-version": {
+					"name": "schema-protocol-version",
+					"displayName": "Schema Protocol Version",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-version": {
+					"name": "schema-version",
+					"displayName": "Schema Version",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"schema-text": {
+					"name": "schema-text",
+					"displayName": "Schema Text",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"componentType": "CONTROLLER_SERVICE",
+			"groupIdentifier": "7268a0b4-ddac-3bff-8024-4d6dcc8bb902"
+		}],
+		"variables": {},
+		"defaultFlowFileExpiration": "0 sec",
+		"defaultBackPressureObjectThreshold": 10000,
+		"defaultBackPressureDataSizeThreshold": "1 GB",
+		"flowFileConcurrency": "UNBOUNDED",
+		"flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+		"componentType": "PROCESS_GROUP"
+	},
+	"externalControllerServices": {},
+	"parameterContexts": {},
+	"flowEncodingVersion": "1.0"
+}
