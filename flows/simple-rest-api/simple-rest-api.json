@@ -1,1 +1,606 @@
-{"flowContents":{"identifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"API","comments":"","position":{"x":344.0,"y":248.0},"processGroups":[],"remoteProcessGroups":[],"processors":[{"identifier":"f539a06e-4c9b-3da0-9667-26f3ac8fd370","name":"API Request","comments":"","position":{"x":464.0,"y":144.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.HandleHttpRequest","properties":{"multipart-request-max-size":"1 MB","parameters-to-attributes":null,"Allow POST":"false","Hostname":null,"Default URL Character Set":"UTF-8","Allow DELETE":"false","Additional HTTP Methods":null,"container-queue-size":"50","HTTP Context Map":"c09d1a12-d08e-3111-803f-b0502fe79a67","multipart-read-buffer-size":"512 KB","SSL Context Service":null,"Allow OPTIONS":"false","Allowed Paths":"/api","Allow GET":"true","Allow HEAD":"false","Listening Port":"80","Client Authentication":"No Authentication","Allow PUT":"false"},"propertyDescriptors":{"multipart-request-max-size":{"name":"multipart-request-max-size","displayName":"Multipart Request Max Size","identifiesControllerService":false,"sensitive":false},"parameters-to-attributes":{"name":"parameters-to-attributes","displayName":"Parameters to Attributes List","identifiesControllerService":false,"sensitive":false},"Allow POST":{"name":"Allow POST","displayName":"Allow POST","identifiesControllerService":false,"sensitive":false},"Hostname":{"name":"Hostname","displayName":"Hostname","identifiesControllerService":false,"sensitive":false},"Default URL Character Set":{"name":"Default URL Character Set","displayName":"Default URL Character Set","identifiesControllerService":false,"sensitive":false},"Allow DELETE":{"name":"Allow DELETE","displayName":"Allow DELETE","identifiesControllerService":false,"sensitive":false},"Additional HTTP Methods":{"name":"Additional HTTP Methods","displayName":"Additional HTTP Methods","identifiesControllerService":false,"sensitive":false},"container-queue-size":{"name":"container-queue-size","displayName":"Container Queue Size","identifiesControllerService":false,"sensitive":false},"HTTP Context Map":{"name":"HTTP Context Map","displayName":"HTTP Context Map","identifiesControllerService":true,"sensitive":false},"multipart-read-buffer-size":{"name":"multipart-read-buffer-size","displayName":"Multipart Read Buffer Size","identifiesControllerService":false,"sensitive":false},"SSL Context Service":{"name":"SSL Context Service","displayName":"SSL Context Service","identifiesControllerService":true,"sensitive":false},"Allow OPTIONS":{"name":"Allow OPTIONS","displayName":"Allow OPTIONS","identifiesControllerService":false,"sensitive":false},"Allowed Paths":{"name":"Allowed Paths","displayName":"Allowed Paths","identifiesControllerService":false,"sensitive":false},"Allow GET":{"name":"Allow GET","displayName":"Allow GET","identifiesControllerService":false,"sensitive":false},"Allow HEAD":{"name":"Allow HEAD","displayName":"Allow HEAD","identifiesControllerService":false,"sensitive":false},"Listening Port":{"name":"Listening Port","displayName":"Listening Port","identifiesControllerService":false,"sensitive":false},"Client Authentication":{"name":"Client Authentication","displayName":"Client Authentication","identifiesControllerService":false,"sensitive":false},"Allow PUT":{"name":"Allow PUT","displayName":"Allow PUT","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":[],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"61ec6036-e9b8-3cf6-b1ad-787c104a0056","name":"Val1 or Val2?","comments":"","position":{"x":464.0,"y":344.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.RouteOnAttribute","properties":{"Routing Strategy":"Route to Property name","val2":"${http.param.param1:equals('val2')}","val1":"${http.param.param1:equals('val1')}"},"propertyDescriptors":{"Routing Strategy":{"name":"Routing Strategy","displayName":"Routing Strategy","identifiesControllerService":false,"sensitive":false},"val2":{"name":"val2","displayName":"val2","identifiesControllerService":false,"sensitive":false},"val1":{"name":"val1","displayName":"val1","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":["unmatched"],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"f0b49e00-7ece-325f-8378-a40952d77a0d","name":"API Response","comments":"","position":{"x":464.0,"y":712.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.HandleHttpResponse","properties":{"HTTP Context Map":"c09d1a12-d08e-3111-803f-b0502fe79a67","Attributes to add to the HTTP Response (Regex)":null,"HTTP Status Code":"200"},"propertyDescriptors":{"HTTP Context Map":{"name":"HTTP Context Map","displayName":"HTTP Context Map","identifiesControllerService":true,"sensitive":false},"Attributes to add to the HTTP Response (Regex)":{"name":"Attributes to add to the HTTP Response (Regex)","displayName":"Attributes to add to the HTTP Response (Regex)","identifiesControllerService":false,"sensitive":false},"HTTP Status Code":{"name":"HTTP Status Code","displayName":"HTTP Status Code","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":["success","failure"],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"3f13b7af-4198-30cf-baa2-349b75873751","name":"Set val1 result content","comments":"","position":{"x":288.0,"y":536.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.ReplaceText","properties":{"Regular Expression":"(.*)","Replacement Value":"{\n \"result\":\"you sent val1\"\n}","Evaluation Mode":"Entire text","Line-by-Line Evaluation Mode":"All","Character Set":"UTF-8","Maximum Buffer Size":"1 MB","Replacement Strategy":"Always Replace"},"propertyDescriptors":{"Regular Expression":{"name":"Regular Expression","displayName":"Search Value","identifiesControllerService":false,"sensitive":false},"Replacement Value":{"name":"Replacement Value","displayName":"Replacement Value","identifiesControllerService":false,"sensitive":false},"Evaluation Mode":{"name":"Evaluation Mode","displayName":"Evaluation Mode","identifiesControllerService":false,"sensitive":false},"Line-by-Line Evaluation Mode":{"name":"Line-by-Line Evaluation Mode","displayName":"Line-by-Line Evaluation Mode","identifiesControllerService":false,"sensitive":false},"Character Set":{"name":"Character Set","displayName":"Character Set","identifiesControllerService":false,"sensitive":false},"Maximum Buffer Size":{"name":"Maximum Buffer Size","displayName":"Maximum Buffer Size","identifiesControllerService":false,"sensitive":false},"Replacement Strategy":{"name":"Replacement Strategy","displayName":"Replacement Strategy","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":["failure"],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"b0f6281a-1386-3638-b7bf-29319dcbc824","name":"Set val2 result content","comments":"","position":{"x":664.0,"y":536.0},"bundle":{"group":"org.apache.nifi","artifact":"nifi-standard-nar","version":"1.14.0"},"style":{},"type":"org.apache.nifi.processors.standard.ReplaceText","properties":{"Regular Expression":"(.*)","Replacement Value":"{\n \"result\":\"you sent val2\"\n}","Evaluation Mode":"Entire text","Line-by-Line Evaluation Mode":"All","Character Set":"UTF-8","Maximum Buffer Size":"1 MB","Replacement Strategy":"Always Replace"},"propertyDescriptors":{"Regular Expression":{"name":"Regular Expression","displayName":"Search Value","identifiesControllerService":false,"sensitive":false},"Replacement Value":{"name":"Replacement Value","displayName":"Replacement Value","identifiesControllerService":false,"sensitive":false},"Evaluation Mode":{"name":"Evaluation Mode","displayName":"Evaluation Mode","identifiesControllerService":false,"sensitive":false},"Line-by-Line Evaluation Mode":{"name":"Line-by-Line Evaluation Mode","displayName":"Line-by-Line Evaluation Mode","identifiesControllerService":false,"sensitive":false},"Character Set":{"name":"Character Set","displayName":"Character Set","identifiesControllerService":false,"sensitive":false},"Maximum Buffer Size":{"name":"Maximum Buffer Size","displayName":"Maximum Buffer Size","identifiesControllerService":false,"sensitive":false},"Replacement Strategy":{"name":"Replacement Strategy","displayName":"Replacement Strategy","identifiesControllerService":false,"sensitive":false}},"schedulingPeriod":"0 sec","schedulingStrategy":"TIMER_DRIVEN","executionNode":"ALL","penaltyDuration":"30 sec","yieldDuration":"1 sec","bulletinLevel":"WARN","runDurationMillis":0,"concurrentlySchedulableTaskCount":1,"autoTerminatedRelationships":["failure"],"scheduledState":"ENABLED","componentType":"PROCESSOR","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"}],"inputPorts":[],"outputPorts":[],"connections":[{"identifier":"1bd487df-3bbe-3cd3-9e37-d48cab0f6ebf","name":"","source":{"id":"61ec6036-e9b8-3cf6-b1ad-787c104a0056","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Val1 or Val2?","comments":""},"destination":{"id":"3f13b7af-4198-30cf-baa2-349b75873751","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Set val1 result content","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["val1"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"2ed8c0e1-1345-3b0d-8484-b8306c42c543","name":"","source":{"id":"3f13b7af-4198-30cf-baa2-349b75873751","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Set val1 result content","comments":""},"destination":{"id":"f0b49e00-7ece-325f-8378-a40952d77a0d","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"API Response","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["success"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"56cf4c3a-2c96-35a5-b4c4-a20b66768846","name":"","source":{"id":"f539a06e-4c9b-3da0-9667-26f3ac8fd370","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"API Request","comments":""},"destination":{"id":"61ec6036-e9b8-3cf6-b1ad-787c104a0056","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Val1 or Val2?","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["success"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"c045654b-ae3e-3601-ab63-3ee517a65254","name":"","source":{"id":"61ec6036-e9b8-3cf6-b1ad-787c104a0056","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Val1 or Val2?","comments":""},"destination":{"id":"b0f6281a-1386-3638-b7bf-29319dcbc824","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Set val2 result content","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["val2"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"},{"identifier":"c21d4e4e-9216-307e-81e1-c72b09f06628","name":"","source":{"id":"b0f6281a-1386-3638-b7bf-29319dcbc824","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"Set val2 result content","comments":""},"destination":{"id":"f0b49e00-7ece-325f-8378-a40952d77a0d","type":"PROCESSOR","groupId":"3cb35344-a944-3f98-bfa2-a6a105eadcee","name":"API Response","comments":""},"labelIndex":1,"zIndex":0,"selectedRelationships":["success"],"backPressureObjectThreshold":10000,"backPressureDataSizeThreshold":"1 GB","flowFileExpiration":"0 sec","prioritizers":[],"bends":[],"loadBalanceStrategy":"DO_NOT_LOAD_BALANCE","partitioningAttribute":"","loadBalanceCompression":"DO_NOT_COMPRESS","componentType":"CONNECTION","groupIdentifier":"3cb35344-a944-3f98-bfa2-a6a105eadcee"}],"labels":[],"funnels":[],"controllerServices":[],"variables":{},"defaultFlowFileExpiration":"0 sec","defaultBackPressureObjectThreshold":10000,"defaultBackPressureDataSizeThreshold":"1 GB","flowFileConcurrency":"UNBOUNDED","flowFileOutboundPolicy":"STREAM_WHEN_AVAILABLE","componentType":"PROCESS_GROUP"},"externalControllerServices":{"c09d1a12-d08e-3111-803f-b0502fe79a67":{"identifier":"c09d1a12-d08e-3111-803f-b0502fe79a67","name":"API_Example_Context_Map"}},"parameterContexts":{},"flowEncodingVersion":"1.0"}
+{
+	"flowContents": {
+		"identifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+		"name": "API",
+		"comments": "",
+		"position": {
+			"x": 344.0,
+			"y": 248.0
+		},
+		"processGroups": [],
+		"remoteProcessGroups": [],
+		"processors": [{
+			"identifier": "f539a06e-4c9b-3da0-9667-26f3ac8fd370",
+			"name": "API Request",
+			"comments": "",
+			"position": {
+				"x": 464.0,
+				"y": 144.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.HandleHttpRequest",
+			"properties": {
+				"multipart-request-max-size": "1 MB",
+				"parameters-to-attributes": null,
+				"Allow POST": "false",
+				"Hostname": null,
+				"Default URL Character Set": "UTF-8",
+				"Allow DELETE": "false",
+				"Additional HTTP Methods": null,
+				"container-queue-size": "50",
+				"HTTP Context Map": "c09d1a12-d08e-3111-803f-b0502fe79a67",
+				"multipart-read-buffer-size": "512 KB",
+				"SSL Context Service": null,
+				"Allow OPTIONS": "false",
+				"Allowed Paths": "/api",
+				"Allow GET": "true",
+				"Allow HEAD": "false",
+				"Listening Port": "80",
+				"Client Authentication": "No Authentication",
+				"Allow PUT": "false"
+			},
+			"propertyDescriptors": {
+				"multipart-request-max-size": {
+					"name": "multipart-request-max-size",
+					"displayName": "Multipart Request Max Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"parameters-to-attributes": {
+					"name": "parameters-to-attributes",
+					"displayName": "Parameters to Attributes List",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allow POST": {
+					"name": "Allow POST",
+					"displayName": "Allow POST",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Hostname": {
+					"name": "Hostname",
+					"displayName": "Hostname",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Default URL Character Set": {
+					"name": "Default URL Character Set",
+					"displayName": "Default URL Character Set",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allow DELETE": {
+					"name": "Allow DELETE",
+					"displayName": "Allow DELETE",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Additional HTTP Methods": {
+					"name": "Additional HTTP Methods",
+					"displayName": "Additional HTTP Methods",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"container-queue-size": {
+					"name": "container-queue-size",
+					"displayName": "Container Queue Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"HTTP Context Map": {
+					"name": "HTTP Context Map",
+					"displayName": "HTTP Context Map",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"multipart-read-buffer-size": {
+					"name": "multipart-read-buffer-size",
+					"displayName": "Multipart Read Buffer Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"SSL Context Service": {
+					"name": "SSL Context Service",
+					"displayName": "SSL Context Service",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Allow OPTIONS": {
+					"name": "Allow OPTIONS",
+					"displayName": "Allow OPTIONS",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allowed Paths": {
+					"name": "Allowed Paths",
+					"displayName": "Allowed Paths",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allow GET": {
+					"name": "Allow GET",
+					"displayName": "Allow GET",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allow HEAD": {
+					"name": "Allow HEAD",
+					"displayName": "Allow HEAD",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Listening Port": {
+					"name": "Listening Port",
+					"displayName": "Listening Port",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Client Authentication": {
+					"name": "Client Authentication",
+					"displayName": "Client Authentication",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Allow PUT": {
+					"name": "Allow PUT",
+					"displayName": "Allow PUT",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": [],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "61ec6036-e9b8-3cf6-b1ad-787c104a0056",
+			"name": "Val1 or Val2?",
+			"comments": "",
+			"position": {
+				"x": 464.0,
+				"y": 344.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.RouteOnAttribute",
+			"properties": {
+				"Routing Strategy": "Route to Property name",
+				"val2": "${http.param.param1:equals('val2')}",
+				"val1": "${http.param.param1:equals('val1')}"
+			},
+			"propertyDescriptors": {
+				"Routing Strategy": {
+					"name": "Routing Strategy",
+					"displayName": "Routing Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"val2": {
+					"name": "val2",
+					"displayName": "val2",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"val1": {
+					"name": "val1",
+					"displayName": "val1",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": ["unmatched"],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "f0b49e00-7ece-325f-8378-a40952d77a0d",
+			"name": "API Response",
+			"comments": "",
+			"position": {
+				"x": 464.0,
+				"y": 712.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.HandleHttpResponse",
+			"properties": {
+				"HTTP Context Map": "c09d1a12-d08e-3111-803f-b0502fe79a67",
+				"Attributes to add to the HTTP Response (Regex)": null,
+				"HTTP Status Code": "200"
+			},
+			"propertyDescriptors": {
+				"HTTP Context Map": {
+					"name": "HTTP Context Map",
+					"displayName": "HTTP Context Map",
+					"identifiesControllerService": true,
+					"sensitive": false
+				},
+				"Attributes to add to the HTTP Response (Regex)": {
+					"name": "Attributes to add to the HTTP Response (Regex)",
+					"displayName": "Attributes to add to the HTTP Response (Regex)",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"HTTP Status Code": {
+					"name": "HTTP Status Code",
+					"displayName": "HTTP Status Code",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": ["success", "failure"],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "3f13b7af-4198-30cf-baa2-349b75873751",
+			"name": "Set val1 result content",
+			"comments": "",
+			"position": {
+				"x": 288.0,
+				"y": 536.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.ReplaceText",
+			"properties": {
+				"Regular Expression": "(.*)",
+				"Replacement Value": "{\n \"result\":\"you sent val1\"\n}",
+				"Evaluation Mode": "Entire text",
+				"Line-by-Line Evaluation Mode": "All",
+				"Character Set": "UTF-8",
+				"Maximum Buffer Size": "1 MB",
+				"Replacement Strategy": "Always Replace"
+			},
+			"propertyDescriptors": {
+				"Regular Expression": {
+					"name": "Regular Expression",
+					"displayName": "Search Value",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Replacement Value": {
+					"name": "Replacement Value",
+					"displayName": "Replacement Value",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Evaluation Mode": {
+					"name": "Evaluation Mode",
+					"displayName": "Evaluation Mode",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Line-by-Line Evaluation Mode": {
+					"name": "Line-by-Line Evaluation Mode",
+					"displayName": "Line-by-Line Evaluation Mode",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Character Set": {
+					"name": "Character Set",
+					"displayName": "Character Set",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Maximum Buffer Size": {
+					"name": "Maximum Buffer Size",
+					"displayName": "Maximum Buffer Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Replacement Strategy": {
+					"name": "Replacement Strategy",
+					"displayName": "Replacement Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": ["failure"],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "b0f6281a-1386-3638-b7bf-29319dcbc824",
+			"name": "Set val2 result content",
+			"comments": "",
+			"position": {
+				"x": 664.0,
+				"y": 536.0
+			},
+			"bundle": {
+				"group": "org.apache.nifi",
+				"artifact": "nifi-standard-nar",
+				"version": "1.14.0"
+			},
+			"style": {},
+			"type": "org.apache.nifi.processors.standard.ReplaceText",
+			"properties": {
+				"Regular Expression": "(.*)",
+				"Replacement Value": "{\n \"result\":\"you sent val2\"\n}",
+				"Evaluation Mode": "Entire text",
+				"Line-by-Line Evaluation Mode": "All",
+				"Character Set": "UTF-8",
+				"Maximum Buffer Size": "1 MB",
+				"Replacement Strategy": "Always Replace"
+			},
+			"propertyDescriptors": {
+				"Regular Expression": {
+					"name": "Regular Expression",
+					"displayName": "Search Value",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Replacement Value": {
+					"name": "Replacement Value",
+					"displayName": "Replacement Value",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Evaluation Mode": {
+					"name": "Evaluation Mode",
+					"displayName": "Evaluation Mode",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Line-by-Line Evaluation Mode": {
+					"name": "Line-by-Line Evaluation Mode",
+					"displayName": "Line-by-Line Evaluation Mode",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Character Set": {
+					"name": "Character Set",
+					"displayName": "Character Set",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Maximum Buffer Size": {
+					"name": "Maximum Buffer Size",
+					"displayName": "Maximum Buffer Size",
+					"identifiesControllerService": false,
+					"sensitive": false
+				},
+				"Replacement Strategy": {
+					"name": "Replacement Strategy",
+					"displayName": "Replacement Strategy",
+					"identifiesControllerService": false,
+					"sensitive": false
+				}
+			},
+			"schedulingPeriod": "0 sec",
+			"schedulingStrategy": "TIMER_DRIVEN",
+			"executionNode": "ALL",
+			"penaltyDuration": "30 sec",
+			"yieldDuration": "1 sec",
+			"bulletinLevel": "WARN",
+			"runDurationMillis": 0,
+			"concurrentlySchedulableTaskCount": 1,
+			"autoTerminatedRelationships": ["failure"],
+			"scheduledState": "ENABLED",
+			"componentType": "PROCESSOR",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}],
+		"inputPorts": [],
+		"outputPorts": [],
+		"connections": [{
+			"identifier": "1bd487df-3bbe-3cd3-9e37-d48cab0f6ebf",
+			"name": "",
+			"source": {
+				"id": "61ec6036-e9b8-3cf6-b1ad-787c104a0056",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Val1 or Val2?",
+				"comments": ""
+			},
+			"destination": {
+				"id": "3f13b7af-4198-30cf-baa2-349b75873751",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Set val1 result content",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["val1"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "2ed8c0e1-1345-3b0d-8484-b8306c42c543",
+			"name": "",
+			"source": {
+				"id": "3f13b7af-4198-30cf-baa2-349b75873751",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Set val1 result content",
+				"comments": ""
+			},
+			"destination": {
+				"id": "f0b49e00-7ece-325f-8378-a40952d77a0d",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "API Response",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["success"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "56cf4c3a-2c96-35a5-b4c4-a20b66768846",
+			"name": "",
+			"source": {
+				"id": "f539a06e-4c9b-3da0-9667-26f3ac8fd370",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "API Request",
+				"comments": ""
+			},
+			"destination": {
+				"id": "61ec6036-e9b8-3cf6-b1ad-787c104a0056",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Val1 or Val2?",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["success"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "c045654b-ae3e-3601-ab63-3ee517a65254",
+			"name": "",
+			"source": {
+				"id": "61ec6036-e9b8-3cf6-b1ad-787c104a0056",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Val1 or Val2?",
+				"comments": ""
+			},
+			"destination": {
+				"id": "b0f6281a-1386-3638-b7bf-29319dcbc824",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Set val2 result content",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["val2"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}, {
+			"identifier": "c21d4e4e-9216-307e-81e1-c72b09f06628",
+			"name": "",
+			"source": {
+				"id": "b0f6281a-1386-3638-b7bf-29319dcbc824",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "Set val2 result content",
+				"comments": ""
+			},
+			"destination": {
+				"id": "f0b49e00-7ece-325f-8378-a40952d77a0d",
+				"type": "PROCESSOR",
+				"groupId": "3cb35344-a944-3f98-bfa2-a6a105eadcee",
+				"name": "API Response",
+				"comments": ""
+			},
+			"labelIndex": 1,
+			"zIndex": 0,
+			"selectedRelationships": ["success"],
+			"backPressureObjectThreshold": 10000,
+			"backPressureDataSizeThreshold": "1 GB",
+			"flowFileExpiration": "0 sec",
+			"prioritizers": [],
+			"bends": [],
+			"loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+			"partitioningAttribute": "",
+			"loadBalanceCompression": "DO_NOT_COMPRESS",
+			"componentType": "CONNECTION",
+			"groupIdentifier": "3cb35344-a944-3f98-bfa2-a6a105eadcee"
+		}],
+		"labels": [],
+		"funnels": [],
+		"controllerServices": [],
+		"variables": {},
+		"defaultFlowFileExpiration": "0 sec",
+		"defaultBackPressureObjectThreshold": 10000,
+		"defaultBackPressureDataSizeThreshold": "1 GB",
+		"flowFileConcurrency": "UNBOUNDED",
+		"flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+		"componentType": "PROCESS_GROUP"
+	},
+	"externalControllerServices": {
+		"c09d1a12-d08e-3111-803f-b0502fe79a67": {
+			"identifier": "c09d1a12-d08e-3111-803f-b0502fe79a67",
+			"name": "API_Example_Context_Map"
+		}
+	},
+	"parameterContexts": {},
+	"flowEncodingVersion": "1.0"
+}
