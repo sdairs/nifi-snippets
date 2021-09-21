@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template encoding-version="1.3">
+    <description></description>
+    <groupId>b1c9bae5-017b-1000-3072-15706c9551d2</groupId>
+    <name>scripted-reader-key-value-pair</name>
+    <snippet>
+        <processGroups>
+            <id>79a4f1e9-0d1c-3cfd-0000-000000000000</id>
+            <parentGroupId>3e5b0850-d7a9-3bee-0000-000000000000</parentGroupId>
+            <position>
+                <x>0.0</x>
+                <y>0.0</y>
+            </position>
+            <comments></comments>
+            <contents>
+                <connections>
+                    <id>00980d64-ac68-37fe-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>209521eb-4a09-3a56-0000-000000000000</id>
+                        <type>FUNNEL</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+                    <name></name>
+                    <selectedRelationships>success</selectedRelationships>
+                    <source>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>c396575f-5d66-3354-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <connections>
+                    <id>56ab560b-3a25-3754-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>c396575f-5d66-3354-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+                    <name></name>
+                    <selectedRelationships>success</selectedRelationships>
+                    <source>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>e75d0a06-23aa-3acb-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <connections>
+                    <id>85b2acbf-adec-35c7-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>012df8ce-8e87-3abd-0000-000000000000</id>
+                        <type>FUNNEL</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+                    <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+                    <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+                    <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+                    <name></name>
+                    <selectedRelationships>failure</selectedRelationships>
+                    <source>
+                        <groupId>79a4f1e9-0d1c-3cfd-0000-000000000000</groupId>
+                        <id>c396575f-5d66-3354-0000-000000000000</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <controllerServices>
+                    <id>496ccf5b-1ef9-36db-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <bundle>
+                        <artifact>nifi-record-serialization-services-nar</artifact>
+                        <group>org.apache.nifi</group>
+                        <version>1.14.0</version>
+                    </bundle>
+                    <comments></comments>
+                    <descriptors>
+                        <entry>
+                            <key>Schema Write Strategy</key>
+                            <value>
+<name>Schema Write Strategy</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-cache</key>
+                            <value>
+<identifiesControllerService>org.apache.nifi.serialization.RecordSchemaCacheService</identifiesControllerService>
+<name>schema-cache</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-protocol-version</key>
+                            <value>
+<dependencies>
+    <dependentValues>hwx-schema-ref-attributes</dependentValues>
+    <dependentValues>hwx-content-encoded-schema</dependentValues>
+    <propertyName>Schema Write Strategy</propertyName>
+</dependencies>
+<name>schema-protocol-version</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-access-strategy</key>
+                            <value>
+<name>schema-access-strategy</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-registry</key>
+                            <value>
+<dependencies>
+    <dependentValues>confluent-encoded</dependentValues>
+    <dependentValues>schema-name</dependentValues>
+    <dependentValues>hwx-schema-ref-attributes</dependentValues>
+    <dependentValues>hwx-content-encoded-schema</dependentValues>
+    <propertyName>schema-access-strategy</propertyName>
+</dependencies>
+<identifiesControllerService>org.apache.nifi.schemaregistry.services.SchemaRegistry</identifiesControllerService>
+<name>schema-registry</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-name</key>
+                            <value>
+<dependencies>
+    <dependentValues>schema-name</dependentValues>
+    <propertyName>schema-access-strategy</propertyName>
+</dependencies>
+<name>schema-name</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-version</key>
+                            <value>
+<dependencies>
+    <dependentValues>schema-name</dependentValues>
+    <propertyName>schema-access-strategy</propertyName>
+</dependencies>
+<name>schema-version</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-branch</key>
+                            <value>
+<dependencies>
+    <dependentValues>schema-name</dependentValues>
+    <propertyName>schema-access-strategy</propertyName>
+</dependencies>
+<name>schema-branch</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>schema-text</key>
+                            <value>
+<dependencies>
+    <dependentValues>schema-text-property</dependentValues>
+    <propertyName>schema-access-strategy</propertyName>
+</dependencies>
+<name>schema-text</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Date Format</key>
+                            <value>
+<name>Date Format</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Time Format</key>
+                            <value>
+<name>Time Format</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Timestamp Format</key>
+                            <value>
+<name>Timestamp Format</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Pretty Print JSON</key>
+                            <value>
+<name>Pretty Print JSON</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>suppress-nulls</key>
+                            <value>
+<name>suppress-nulls</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>output-grouping</key>
+                            <value>
+<name>output-grouping</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>compression-format</key>
+                            <value>
+<name>compression-format</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>compression-level</key>
+                            <value>
+<dependencies>
+    <dependentValues>gzip</dependentValues>
+    <propertyName>compression-format</propertyName>
+</dependencies>
+<name>compression-level</name>
+                            </value>
+                        </entry>
+                    </descriptors>
+                    <name>JSON Record Writer</name>
+                    <persistsState>false</persistsState>
+                    <properties>
+                        <entry>
+                            <key>Schema Write Strategy</key>
+                            <value>no-schema</value>
+                        </entry>
+                        <entry>
+                            <key>schema-cache</key>
+                        </entry>
+                        <entry>
+                            <key>schema-protocol-version</key>
+                            <value>1</value>
+                        </entry>
+                        <entry>
+                            <key>schema-access-strategy</key>
+                            <value>inherit-record-schema</value>
+                        </entry>
+                        <entry>
+                            <key>schema-registry</key>
+                        </entry>
+                        <entry>
+                            <key>schema-name</key>
+                            <value>${schema.name}</value>
+                        </entry>
+                        <entry>
+                            <key>schema-version</key>
+                        </entry>
+                        <entry>
+                            <key>schema-branch</key>
+                        </entry>
+                        <entry>
+                            <key>schema-text</key>
+                            <value>${avro.schema}</value>
+                        </entry>
+                        <entry>
+                            <key>Date Format</key>
+                        </entry>
+                        <entry>
+                            <key>Time Format</key>
+                        </entry>
+                        <entry>
+                            <key>Timestamp Format</key>
+                        </entry>
+                        <entry>
+                            <key>Pretty Print JSON</key>
+                            <value>false</value>
+                        </entry>
+                        <entry>
+                            <key>suppress-nulls</key>
+                            <value>never-suppress</value>
+                        </entry>
+                        <entry>
+                            <key>output-grouping</key>
+                            <value>output-array</value>
+                        </entry>
+                        <entry>
+                            <key>compression-format</key>
+                            <value>none</value>
+                        </entry>
+                        <entry>
+                            <key>compression-level</key>
+                            <value>1</value>
+                        </entry>
+                    </properties>
+                    <state>ENABLED</state>
+                    <type>org.apache.nifi.json.JsonRecordSetWriter</type>
+                </controllerServices>
+                <controllerServices>
+                    <id>81b4bd6d-0222-3b97-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <bundle>
+                        <artifact>nifi-scripting-nar</artifact>
+                        <group>org.apache.nifi</group>
+                        <version>1.14.0</version>
+                    </bundle>
+                    <comments></comments>
+                    <descriptors>
+                        <entry>
+                            <key>Script Engine</key>
+                            <value>
+<name>Script Engine</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Script File</key>
+                            <value>
+<name>Script File</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Script Body</key>
+                            <value>
+<name>Script Body</name>
+                            </value>
+                        </entry>
+                        <entry>
+                            <key>Module Directory</key>
+                            <value>
+<name>Module Directory</name>
+                            </value>
+                        </entry>
+                    </descriptors>
+                    <name>KVP Scripted Reader</name>
+                    <persistsState>false</persistsState>
+                    <properties>
+                        <entry>
+                            <key>Script Engine</key>
+                            <value>Groovy</value>
+                        </entry>
+                        <entry>
+                            <key>Script File</key>
+                        </entry>
+                        <entry>
+                            <key>Script Body</key>
+                            <value>import org.apache.nifi.serialization.record.MapRecord
+import org.apache.nifi.serialization.record.RecordField
+import org.apache.nifi.serialization.RecordReader
+import org.apache.nifi.serialization.SimpleRecordSchema
+import org.apache.nifi.controller.AbstractControllerService
+import org.apache.nifi.logging.ComponentLog
+import org.apache.nifi.serialization.MalformedRecordException
+import org.apache.nifi.serialization.record.Record
+import org.apache.nifi.serialization.RecordReaderFactory
+import org.apache.nifi.serialization.record.RecordSchema
+import org.apache.nifi.serialization.record.RecordFieldType
+
+class KVPReader implements RecordReader {
+
+    private final BufferedReader bufferedReader
+
+    public KVPReader(InputStream input) {
+        bufferedReader = new BufferedReader(new InputStreamReader(input))
+    }
+
+    public Record nextRecord(final boolean coerceTypes, final boolean dropUnknownFields) throws IOException, MalformedRecordException {
+        final String line = bufferedReader.readLine()
+        if (line == null) {
+            return null
+        }
+
+        List&lt;String&gt; kvps = line.tokenize(' ')
+        Map&lt;String, Object&gt; recordValues = [:]
+        List&lt;RecordField&gt; recordFields = []
+        kvps.each { row -&gt;
+            String key = ''
+            String value = ''
+            (key,value) = row.tokenize(':')
+            recordValues.put(key, value)
+            recordFields.add(new RecordField(key, RecordFieldType.STRING.getDataType()))
+        }
+        SimpleRecordSchema schema = new SimpleRecordSchema(recordFields)
+        return new MapRecord(schema, recordValues)
+    }
+
+    @Override
+    public void close() throws IOException {
+        bufferedReader.close()
+    }
+
+    @Override
+    public RecordSchema getSchema() {
+        return schema
+    }
+
+}
+
+class KVPReaderFactory extends AbstractControllerService implements RecordReaderFactory {
+
+    public KVPReaderFactory() {
+    }
+
+    public RecordReader createRecordReader(final Map&lt;String, String&gt; variables, final InputStream inputStream, final long inputLength, final ComponentLog componentLog) throws IOException {
+        return new KVPReader(inputStream)
+    }
+
+}
+
+reader = new KVPReaderFactory()
+</value>
+                        </entry>
+                        <entry>
+                            <key>Module Directory</key>
+                        </entry>
+                    </properties>
+                    <state>ENABLED</state>
+                    <type>org.apache.nifi.record.script.ScriptedReader</type>
+                </controllerServices>
+                <funnels>
+                    <id>012df8ce-8e87-3abd-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-48.0</x>
+                        <y>808.0</y>
+                    </position>
+                </funnels>
+                <funnels>
+                    <id>209521eb-4a09-3a56-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-528.0</x>
+                        <y>808.0</y>
+                    </position>
+                </funnels>
+                <processors>
+                    <id>c396575f-5d66-3354-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-424.0</x>
+                        <y>568.0</y>
+                    </position>
+                    <bundle>
+                        <artifact>nifi-standard-nar</artifact>
+                        <group>org.apache.nifi</group>
+                        <version>1.14.0</version>
+                    </bundle>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <descriptors>
+                            <entry>
+<key>record-reader</key>
+<value>
+    <identifiesControllerService>org.apache.nifi.serialization.RecordReaderFactory</identifiesControllerService>
+    <name>record-reader</name>
+</value>
+                            </entry>
+                            <entry>
+<key>record-writer</key>
+<value>
+    <identifiesControllerService>org.apache.nifi.serialization.RecordSetWriterFactory</identifiesControllerService>
+    <name>record-writer</name>
+</value>
+                            </entry>
+                            <entry>
+<key>replacement-value-strategy</key>
+<value>
+    <name>replacement-value-strategy</name>
+</value>
+                            </entry>
+                            <entry>
+<key>/location</key>
+<value>
+    <name>/location</name>
+</value>
+                            </entry>
+                        </descriptors>
+                        <executionNode>ALL</executionNode>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+<key>record-reader</key>
+<value>81b4bd6d-0222-3b97-0000-000000000000</value>
+                            </entry>
+                            <entry>
+<key>record-writer</key>
+<value>496ccf5b-1ef9-36db-0000-000000000000</value>
+                            </entry>
+                            <entry>
+<key>replacement-value-strategy</key>
+<value>literal-value</value>
+                            </entry>
+                            <entry>
+<key>/location</key>
+<value>philly</value>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <executionNodeRestricted>false</executionNodeRestricted>
+                    <name>Convert KVP to JSON &amp; Add Location</name>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <name>failure</name>
+                    </relationships>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <name>success</name>
+                    </relationships>
+                    <state>STOPPED</state>
+                    <style/>
+                    <type>org.apache.nifi.processors.standard.UpdateRecord</type>
+                </processors>
+                <processors>
+                    <id>e75d0a06-23aa-3acb-0000-000000000000</id>
+                    <parentGroupId>79a4f1e9-0d1c-3cfd-0000-000000000000</parentGroupId>
+                    <position>
+                        <x>-424.0</x>
+                        <y>368.0</y>
+                    </position>
+                    <bundle>
+                        <artifact>nifi-standard-nar</artifact>
+                        <group>org.apache.nifi</group>
+                        <version>1.14.0</version>
+                    </bundle>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <descriptors>
+                            <entry>
+<key>File Size</key>
+<value>
+    <name>File Size</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Batch Size</key>
+<value>
+    <name>Batch Size</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Data Format</key>
+<value>
+    <name>Data Format</name>
+</value>
+                            </entry>
+                            <entry>
+<key>Unique FlowFiles</key>
+<value>
+    <name>Unique FlowFiles</name>
+</value>
+                            </entry>
+                            <entry>
+<key>generate-ff-custom-text</key>
+<value>
+    <name>generate-ff-custom-text</name>
+</value>
+                            </entry>
+                            <entry>
+<key>character-set</key>
+<value>
+    <name>character-set</name>
+</value>
+                            </entry>
+                            <entry>
+<key>mime-type</key>
+<value>
+    <name>mime-type</name>
+</value>
+                            </entry>
+                        </descriptors>
+                        <executionNode>ALL</executionNode>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+<key>File Size</key>
+<value>0B</value>
+                            </entry>
+                            <entry>
+<key>Batch Size</key>
+<value>1</value>
+                            </entry>
+                            <entry>
+<key>Data Format</key>
+<value>Text</value>
+                            </entry>
+                            <entry>
+<key>Unique FlowFiles</key>
+<value>false</value>
+                            </entry>
+                            <entry>
+<key>generate-ff-custom-text</key>
+<value>name:dennis age:45 job:veterinarian
+name:dee age:45 job:actress
+name:mac age:44 job:sheriff
+name:charlie age:45 job:lawyer</value>
+                            </entry>
+                            <entry>
+<key>character-set</key>
+<value>UTF-8</value>
+                            </entry>
+                            <entry>
+<key>mime-type</key>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>60 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <executionNodeRestricted>false</executionNodeRestricted>
+                    <name>Generate Test KVP Data</name>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <name>success</name>
+                    </relationships>
+                    <state>STOPPED</state>
+                    <style/>
+                    <type>org.apache.nifi.processors.standard.GenerateFlowFile</type>
+                </processors>
+            </contents>
+            <defaultBackPressureDataSizeThreshold>1 GB</defaultBackPressureDataSizeThreshold>
+            <defaultBackPressureObjectThreshold>10000</defaultBackPressureObjectThreshold>
+            <defaultFlowFileExpiration>0 sec</defaultFlowFileExpiration>
+            <flowfileConcurrency>UNBOUNDED</flowfileConcurrency>
+            <flowfileOutboundPolicy>STREAM_WHEN_AVAILABLE</flowfileOutboundPolicy>
+            <name>scripted-reader-key-value-pair</name>
+            <variables/>
+        </processGroups>
+    </snippet>
+    <timestamp>09/21/2021 22:20:35 BST</timestamp>
+</template>
